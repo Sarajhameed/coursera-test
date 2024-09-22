@@ -3,26 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Layout</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Accessible Photo Gallery</title>
+    <style>
+        /* Add your styles here */
+        figure {
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>My Responsive Page</h1>
-    </header>
-    <div class="container">
-        <section class="section" id="section1">
-            <div class="title">Chicken</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel urna nec arcu bibendum aliquet.</p>
-        </section>
-        <section class="section" id="section2">
-            <div class="title">Beef</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel urna nec arcu bibendum aliquet.</p>
-        </section>
-        <section class="section" id="section3">
-            <div class="title">Sushi</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel urna nec arcu bibendum aliquet.</p>
-        </section>
+
+    <h1>My Accessible Photo Gallery</h1>
+
+    <div id="gallery">
+        <figure tabindex="0">
+            <img src="image1.jpg" alt="Description of image 1">
+            <figcaption>Image 1 Caption</figcaption>
+        </figure>
+        <figure tabindex="0">
+            <img src="image2.jpg" alt="Description of image 2">
+            <figcaption>Image 2 Caption</figcaption>
+        </figure>
+        <!-- Add four more figures with images -->
     </div>
+
+    <script>
+        // Event listeners for mouse and keyboard access
+        const figures = document.querySelectorAll('figure');
+
+        figures.forEach(figure => {
+            figure.addEventListener('mouseover', () => {
+                console.log('Mouse over:', figure);
+            });
+            figure.addEventListener('mouseleave', () => {
+                console.log('Mouse leave:', figure);
+            });
+            figure.addEventListener('focus', () => {
+                console.log('Focused on:', figure);
+            });
+            figure.addEventListener('blur', () => {
+                console.log('Blurred from:', figure);
+            });
+        });
+
+        window.onload = function() {
+            console.log('Page loaded');
+            addTabindex();
+        };
+
+        function addTabindex() {
+            figures.forEach((figure, index) => {
+                figure.setAttribute('tabindex', index);
+                console.log('Tabindex added to figure', index);
+            });
+        }
+    </script>
 </body>
 </html>
